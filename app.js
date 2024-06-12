@@ -25,23 +25,22 @@ app.use((err, req, res, next) => {
   res.status(status).json({ message });
 });
 
-app.listen(3000, () => {
-  console.log("Server is running. Use our API on port: 3000");
-});
+const DB_HOST =
+  "mongodb+srv://Bohdan:LpfWIGNzQsadwC2z@cluster0.xhqdbyv.mongodb.net/my-contacts?retryWrites=true&w=majority&appName=Cluster";
 
 // const { DB_HOST } = process.env;
 
 // console.log(DB_HOST);
 
-// mongoose
-//   .connect(DB_HOST)
-//   .then(() => {
-//     console.log("Database connection successful");
-//     app.listen(3000, () => {
-//       console.log("Server is running. Use our API on port: 3000");
-//     });
-//   })
-//   .catch((error) => {
-//     console.log(error.message);
-//     process.exit(1);
-//   });
+mongoose
+  .connect(DB_HOST)
+  .then(() => {
+    console.log("Database connection successful");
+    app.listen(3000, () => {
+      console.log("Server is running. Use our API on port: 3000");
+    });
+  })
+  .catch((error) => {
+    console.log(error.message);
+    process.exit(1);
+  });
